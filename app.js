@@ -5,12 +5,7 @@ function getRandomNumber(max){
     return Math.floor(Math.random() * max + 1)
 }
 var randomNumber = getRandomNumber(10)
-
-console.log(randomNumber)
-console.log("file being called from index.html")
-
 var guessButton = document.getElementById("submit-guess")
-
 
 guessButton.addEventListener("click",(event) => {
     event.preventDefault()
@@ -18,27 +13,27 @@ guessButton.addEventListener("click",(event) => {
     var userInput = document.getElementById("user-input")
     const num = userInput.value
     
-
-    console.log(num)
     var mainGuessDiv = document.getElementById("show-guesses")
     
     var guessNumAsP = document.createElement("p")
-    guessNumAsP.innerHTML = num
-    mainGuessDiv.append(guessNumAsP)
     
     if (num < randomNumber){
-        hintText.innerHTML = `Target number is greater than ${num}`
+        guessNumAsP.innerHTML += `${num} | Too low`
     }
     else if (num > randomNumber){
-        hintText.innerHTML = `Target number is less than ${num}`
-    }else {
-        // alert("Correct the answer is " + randomNumber)
-        // alert("you guessed correctly")
-        var mainGuessDiv = document.getElementById("show-guesses")
-        // location.reload()
+        guessNumAsP.innerHTML += `${num} | Too high`
     }
 
+    //  Update history
+    mainGuessDiv.append(guessNumAsP)
 
-    
-    
+    if (num == randomNumber){
+        guessNumAsP.innerHTML = `${num} | CORRECT!`
+        mainGuessDiv.append(guessNumAsP)
+        var restartButton = document.createElement("button")
+        restartButton.innerText = "restart"
+        restartButton.onclick = reloadPage()
+
+        mainGuessDiv.append(restartButton)
+    }
 })
