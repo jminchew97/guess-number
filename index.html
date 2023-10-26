@@ -6,14 +6,20 @@
     <!-- Your link to your CSS file -->
     <link rel="stylesheet" href="">
     <!-- Your Javascript file goes here -->
-    <script src="" async defer></script>
+    <script src="app.js" async defer></script>
   </head>
   <body>
     <!-- your HTML should go here -->
     <nav>
       <h1>Let's Play the Guessing Number Game!</h1>
+      <h2 id="hint"></h2>
     </nav>
-
-
+    <form id="guess-form">
+      <input autocomplete="off" ="text" id="user-input">
+      <button id="submit-guess" >Guess</button>
+    </form>
+    <div id="show-guesses">
+      
+    </div>
   </body>
 </html>
